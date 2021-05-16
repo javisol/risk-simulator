@@ -85,7 +85,7 @@ class BattleSimulator:
         return attacker_wins, defender_wins
 
     @staticmethod
-    def required_army(defender_army, win_probability, num_battles=10000):
+    def required_attack_army(defender_army, win_probability, num_battles=10000):
         attacker_temp = 2
         percentage = 0.0
         while percentage < win_probability:
@@ -95,7 +95,18 @@ class BattleSimulator:
         return attacker_temp - 1
 
     @staticmethod
-    def all_battle_combinations(attacker_army_range, defender_army_range, order_by_attacker=True, win_probability=0.0, num_battles=10000):
+    def required_defense_army(attacker_army, win_probability, num_battles=10000):
+        defender_temp = 1
+        percentage = 0.0
+        while percentage < win_probability:
+            attack, defend = BattleSimulator.simulate(num_battles, attacker_army, defender_temp)
+            percentage = defend / num_battles
+            defender_temp += 1
+        return defender_temp - 1
+
+    @staticmethod
+    def all_battle_combinations(attacker_army_range, defender_army_range, by_attacker=True, win_probability=0.0,
+                                num_battles=10000):
         if type(attacker_army_range) == int:
             attacker_range = (attacker_army_range, attacker_army_range+1)
         else:
@@ -107,24 +118,21 @@ class BattleSimulator:
             defender_range = (max(1, defender_army_range[0]), defender_army_range[1]+1)
             print(defender_range)
 
-        if order_by_attacker:
-            i_range = attacker_range
-            j_range = defender_range
-        else:
-            i_range = defender_range
-            j_range = attacker_range
+            print('Attack Defense Probability')
 
-        for i in range(*i_range):
-            for j in range(*j_range):
+        for i in range(*attacker_range):
+            for j in range(*defender_range):
                 attack, defend = BattleSimulator.simulate(num_battles, i, j)
-                percentage = attack / num_battles
+                if by_attacker:
+                    percentage = attack / num_battles
+                else:
+                    percentage = defend / num_battles
                 if percentage >= win_probability:
                     print(i, j, percentage)
 
 
 def main():
-    #print(BattleSimulator.required_army(5, 0.75))
-    BattleSimulator.all_battle_combinations(8, (2, 5))
+    BattleSimulator.all_battle_combinations((2, 20), (1, 20), False)
 
 
 if __name__ == "__main__":

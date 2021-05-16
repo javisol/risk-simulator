@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM python:3.8-slim-buster
+FROM arm32v7/python:3.8-slim-buster
 
 RUN mkdir -p risk/container
 RUN mkdir -p /risk/simulator

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="" method="post">
+        <label for="attacker">Number of attacker armies </label>
+        <input type="text" id="attacker" name="attacker" /><br>
+        <label for="probability">Win probability(0.0-1.0)</label>
+        <input type="text" id="probability" name="probability" /><br>
+        <input type="submit" id="send-simulator" name="simulator" value="Simulate" />
+    </form>
+    <br>
+    <div class="container">
+    {% block status %} {% endblock %}
+    </div>
+
+{% endblock %}

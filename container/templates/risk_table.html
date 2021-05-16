@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="/">Back</a><br>
+(Based on 10000 simulations)
+<h2>Attack Table</h2>
+<img src="{{url_for('static', filename='images/attack_table.png')}}" />
+<br>
+<br>
+<h2>Defense Table</h2>
+<img src="{{url_for('static', filename='images/defense_table.png')}}" />
+{% endblock %}

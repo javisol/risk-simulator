@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Risk Simulation</h1>
     <form action="" method="post">
         <label for="defender">Number of defender armies </label>
         <input type="text" id="defender" name="defender" /><br>
-        <label for="percentage">Win percentage (0.0-1.0)</label>
-        <input type="text" id="percentage" name="percentage" /><br>
+        <label for="probability">Win probability(0.0-1.0)</label>
+        <input type="text" id="probability" name="probability" /><br>
         <input type="submit" id="send-simulator" name="simulator" value="Simulate" />
     </form>
     <br>
-    Number of attacker armies needed: {{ result }}
+    <div class="container">
+    {% block status %} {% endblock %}
+    </div>
 
 {% endblock %}
