@@ -1,8 +1,17 @@
 import random
 from typing import Tuple
+from abc import ABC, abstractmethod
 
 
-class Dice:
+class Dice(ABC):
+    pass
+
+    @abstracmethod
+    def roll(self):
+        pass
+
+
+class Dice6(Dice):
 
     def __init__(self):
         pass
@@ -27,10 +36,10 @@ class Battle:
         def_wins = 0
 
         for at in range(min(3, attacker_num - 1)):
-            attacker_dices.append(Dice.roll())
+            attacker_dices.append(Dice6.roll())
 
         for de in range(min(2, defender_num)):
-            defender_dices.append(Dice.roll())
+            defender_dices.append(Dice6.roll())
 
         attacker_dices.sort(reverse=True)
         defender_dices.sort(reverse=True)
@@ -108,14 +117,14 @@ class BattleSimulator:
     def all_battle_combinations(attacker_army_range, defender_army_range, by_attacker=True, win_probability=0.0,
                                 num_battles=10000):
         if type(attacker_army_range) == int:
-            attacker_range = (attacker_army_range, attacker_army_range+1)
+            attacker_range = (attacker_army_range, attacker_army_range + 1)
         else:
-            attacker_range = (max(2, attacker_army_range[0]), attacker_army_range[1]+1)
+            attacker_range = (max(2, attacker_army_range[0]), attacker_army_range[1] + 1)
             print(attacker_range)
         if type(defender_army_range) == int:
-            defender_range = (defender_army_range, defender_army_range+1)
+            defender_range = (defender_army_range, defender_army_range + 1)
         else:
-            defender_range = (max(1, defender_army_range[0]), defender_army_range[1]+1)
+            defender_range = (max(1, defender_army_range[0]), defender_army_range[1] + 1)
             print(defender_range)
 
             print('Attack Defense Probability')

@@ -2,6 +2,8 @@
 
 Flask and docker based program to simulate Risk dice rolling.
 
+https://hub.docker.com/repository/docker/javisol/risk-sim
+
 ## Build and run code ##
 ### Docker building ###
 ```bash
@@ -15,3 +17,4 @@ docker run -d -p 5050:5000 --name risk risk-sim
 ```bash
 python -m flask run
 ```
+
